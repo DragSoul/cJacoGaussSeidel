@@ -21,7 +21,7 @@
 double error(double tab[], double res[], int N){
     int i,j;
     double tmp;
-    double error;
+    double error = 0;
     for(i =0; i<N; i++){
         tmp = 0;
         for(j =0; j < N; j++){
