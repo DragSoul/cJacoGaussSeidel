@@ -5,10 +5,10 @@ EXEC=cIMatrice
 
 all: $(EXEC)
 
-cIMatrice: jacobi.o main.o display.o testMatrice.o
+cIMatrice: jacobi.o main.o display.o testMatrice.o gs.o
 	$(CC) -o $@ $^ $(LDFLAGS) -lm
 
-main.o: jacobi.o display.o testMatrice.o
+main.o: jacobi.o display.o testMatrice.o gs.o
 
 %.o: %.c
 	$(CC) -o $@ -c $< $(CFLAGS) -lm

@@ -4,28 +4,28 @@
 #include "testMatrice.h"
 #include "display.h"
 
-void jacobi_iteration(double *tab, double *res, double *xinit, int N){
+/*TODO: merge gs.c and jacobi.c to avoid duplicated code*/
+
+void gs_iteration(double *tab, double *res, double *xinit, int N){
     int i, j;
-    double xnext[3];
-    init_zero(xnext, 1, 3);
     for(i = 0; i < N; i++){
+        xinit[i] = 0;
         for (j = 0; j < N; j++){
             if(i == j){
                 continue;
             }
-            xnext[i] -= (tab[i*N+j]*xinit[j])/tab[i*N+i];
+            xinit[i] -= (tab[i*N+j]*xinit[j])/tab[i*N+i];
         }
-        xnext[i] += res[i]/tab[i*N+i];
-    }
-    copy(xnext, xinit, 3, 1);
+        xinit[i] += res[i]/tab[i*N+i];
+    }    
 }
 
-void jacobi(double *tab, double *res, int N){
+void gs(double *tab, double *res, int N){
     int count;
     double xinit[3]={0,0,0}, err;
     err = error(tab, xinit, N);
     while(err > 0.0001){
-        jacobi_iteration(tab, res, xinit, N);
+        gs_iteration(tab, res, xinit, N);
         err = error(tab, xinit, N);
         count++;
     }

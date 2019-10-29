@@ -57,6 +57,20 @@ void copy(double src[], double dest[], int line, int col){
     }
 }
 
+double error(double tab[], double res[], int N){
+    int i,j;
+    double tmp;
+    double err = 0;
+    for(i =0; i<N; i++){
+        tmp = 0;
+        for(j =0; j < N; j++){
+            tmp = tmp + tab[i*N+j] * res[j];
+        }
+        err = err + pow(1.0-tmp, 2);
+    }
+    return sqrt(err);
+}
+
 /**
  * \fn a_bord1(double tab[], int N)
  * \brief Fonction pour générer une matrice a bord.

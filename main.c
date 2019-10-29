@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "jacobi.h"
+#include "gs.h"
 #include "display.h"
 #include "testMatrice.h"
 
@@ -19,6 +20,6 @@
 int main(){
     double tab[100]={3,1,-1,1,2,0,-1,1,4}, res[3]={1,1,1};
     jacobi(tab, res, 3);
-
+    gs(tab, res, 3);
     return 0;
 }
