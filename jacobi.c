@@ -4,6 +4,7 @@
 #include "testMatrice.h"
 #include "display.h"
 
+//the iterative part of the jacobi algorithm
 void jacobi_iteration(double *tab, double *res, double *xinit, int N){
     int i, j;
     double xnext[3];
@@ -20,15 +21,16 @@ void jacobi_iteration(double *tab, double *res, double *xinit, int N){
     copy(xnext, xinit, 3, 1);
 }
 
-void jacobi(double *tab, double *res, int N){
-    int count;
+//entry point (called by main())
+void jacobi(double *tab, double *res, int N, float e){
+    int count = 0;
     double xinit[3]={0,0,0}, err;
     err = error(tab, xinit, N);
-    while(err > 0.0001){
+    while(err > e){
         jacobi_iteration(tab, res, xinit, N);
         err = error(tab, xinit, N);
         count++;
     }
-    printf("gauss-seidel : %d itération\n", count);
-    display_tab_res(xinit, 3);
+    printf("jacobi : %d itération\n", count);
+    //display_tab_res(xinit, 3);
 }

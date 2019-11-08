@@ -6,6 +6,7 @@
 
 /*TODO: merge gs.c and jacobi.c to avoid duplicated code*/
 
+//the iterative part of the gauss-seidel algorithm
 void gs_iteration(double *tab, double *res, double *xinit, int N){
     int i, j;
     for(i = 0; i < N; i++){
@@ -20,15 +21,16 @@ void gs_iteration(double *tab, double *res, double *xinit, int N){
     }    
 }
 
-void gs(double *tab, double *res, int N){
-    int count;
+//entry point (called by main())
+void gs(double *tab, double *res, int N, float e){
+    int count = 0;
     double xinit[3]={0,0,0}, err;
     err = error(tab, xinit, N);
-    while(err > 0.0001){
+    while(err > e){
         gs_iteration(tab, res, xinit, N);
         err = error(tab, xinit, N);
         count++;
     }
     printf("gauss-seidel : %d itération\n", count);
-    display_tab_res(xinit, 3);
+    //display_tab_res(xinit, 3);
 }
