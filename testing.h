@@ -3,7 +3,7 @@
  * \author Aurelien DOUARD, Anthony Bertrand
  * \brief fichier contenant le prototype des fonctions de tests
  * \version 0.1
- * \date 21 octobre 2019
+ * \date 11 novembre 2019
  *
  * fichier contenant le prototype des fonctions de tests
  */

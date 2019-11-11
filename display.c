@@ -3,7 +3,7 @@
  * \author Aurelien DOUARD, Anthony Bertrand
  * \brief Programme pour l'affichage de matrice carré et vecteur de résultat
  * \version 0.1
- * \date 21 octobre 2019
+ * \date 11 novembre 2019
  *
  * Programme pour l'affichage de matrice carré et vecteur de résultat
  *

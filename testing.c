@@ -1,11 +1,11 @@
 /**
  * \file testing.c
  * \author Aurelien DOUARD, Anthony Bertrand
- * \brief Programme de test du temps d'execution des methodes gauss et cholesky.
+ * \brief Programme de test du temps d'execution/nombre d'itérations des methodes Jacobi/Gauss-Seidel.
  * \version 0.1
- * \date 21 octobre 2019
+ * \date 11 octobre 2019
  *
- * Programme de test du temps d'execution des methodes gauss et cholesky.
+ * Programme de test du temps d'execution/nombre d'itérations des methodes Jacobi/Gauss-Seidel.
  *
  */
 
@@ -19,11 +19,12 @@
 #include "testing.h"
 
 /**
- * \fn void gauss_testing_core(int maxDim, double tab[], double res[])
- * \brief Fonction qui exécute une résolution par gauss pour chaque dimension jusqu'a la dimension saisi, puis affiche le temps d'execution, la dimension et l'erreur dans l'entrée standard si le temps d'execution est suppérieur a zero 
- * \param maxDim dimension max de la matrice
- * \param tab tableau pour contenir une matrice
- * \param res tableau pour contenir les résultats d'une matrice.
+ * \fn void testing(double tab[], double res[], int iter, int N)
+ * \brief Fonction qui exécute une résolution par jacobi ou gs (au choix) suivant l'erreur à approcher, puis affiche le temps d'execution, la dimension, l'erreur dans l'entrée standard si le temps d'execution est suppérieur a zero et le nombre d'itération.
+ * \param tab matrice de départ.
+ * \param res matrice de résultats.
+ * \param iter nombre d'iteration (nombre de fois que l'erreur sera réduite afin d'avoir des résultats plus précis).
+ * \param N dimension de nos matrices
  */
 void testing(double tab[], double res[], int iter, int N){
     int i,j;

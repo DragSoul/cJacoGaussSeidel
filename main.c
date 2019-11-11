@@ -1,11 +1,11 @@
 /**
  * \file main.c
  * \author Aurelien DOUARD, Anthony Bertrand
- * \brief Programme de clacule matriciel avec les methodes gauss ou/et cholesky.
+ * \brief Programme de résolution iteratif de systèmes linéaires avec les methodes Jacobi/Gauss-Seidel.
  * \version 0.1
- * \date 21 octobre 2019
+ * \date 11 novembre 2019
  *
- * Programme de clacule matriciel avec les methodes gauss ou/et cholesky.
+ * Programme de résolution iteratif de systèmes linéaires avec les methodes Jacobi/Gauss-Seidel.
  *
  */
 

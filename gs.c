@@ -1,13 +1,30 @@
+/**
+ * \file gs.c
+ * \author Aurelien DOUARD, Anthony Bertrand
+ * \brief Programme de la méthode de Gauss-Seidel.
+ * \version 0.1
+ * \date 11 novembre 2019
+ *
+ * Programme de la méthode de Gauss-Seidel.
+ *
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include "testMatrice.h"
 #include "display.h"
 
-/*TODO: merge gs.c and jacobi.c to avoid duplicated code*/
-
-//the iterative part of the gauss-seidel algorithm
-void gs_iteration(double *tab, double *res, double *xinit, int N){
+/**
+ * \fn gs_iteration(double tab[], double res[], double xinit[], int N)
+ * \brief Fonction éxecutant la partie itérative de la méthode Gauss-Seidel.
+ *
+ * \param tab tableau contenant la matrice de départ.
+ * \param res tableau contenant la matrice de résultats.
+ * \param xinit tableau des inconnus qu'on cherche.
+ * \param N dimension de nos matrices.
+ */
+void gs_iteration(double tab[], double res[], double xinit[], int N){
     int i, j;
     for(i = 0; i < N; i++){
         xinit[i] = 0;
@@ -21,8 +38,16 @@ void gs_iteration(double *tab, double *res, double *xinit, int N){
     }    
 }
 
-//entry point (called by main())
-void gs(double *tab, double *res, int N, float e){
+/**
+ * \fn gs(double tab[], double res[], int N, float e)
+ * \brief Fonction servant de point d'entrée de la méthode Gauss-Seidel.
+ *
+ * \param tab tableau contenant la matrice de départ.
+ * \param res tableau contenant la matrice de résultats.
+ * \param N dimension de nos matrices.
+ * \param e erreur qu'on cherche a approcher.
+ */
+void gs(double tab[], double res[], int N, float e){
     int count = 0;
     double xinit[3]={0,0,0}, err;
     err = error(tab, xinit, N);

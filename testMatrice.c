@@ -2,7 +2,7 @@
  * \file testMatrice.c
  * \author Aurelien DOUARD, Anthony Bertrand
  * \version 0.1
- * \date 21 octobre 2019
+ * \date 11 novembre 2019
  * \brief Programme pour générer les matrices de test.
  *
  * Programme pour générer les matrices de test.
@@ -14,7 +14,7 @@
 #include<math.h>
 
 /**
- * \fn void init_zero(double tab[], int N)
+ * \fn void init_zero(double tab[], int maxi, int maxj)
  * \brief Fonction pour l'initialisation d'une matrice à 0.
  *
  * \param tab tableau a initialiser à 0.
@@ -48,6 +48,15 @@ void transpose(double tab[], int N){
     }
 }
 
+/**
+ * \fn void copy(double src[], double dest[], int line, int col)
+ * \brief Fonction pour copier le contenu d'une matrice dans une autre.
+ *
+ * \param src matrice source.
+ * \param dest matrice destination.
+ * \param line nombre de ligne.
+ * \param col nombre de colonne.
+ */
 void copy(double src[], double dest[], int line, int col){
     int i, j;
     for(i = 0; i < line; i++){
@@ -57,6 +66,15 @@ void copy(double src[], double dest[], int line, int col){
     }
 }
 
+/**
+ * \fn error(double tab[], double res[], int N)
+ * \brief Fonction pour calculer l'erreur cummulée sur une matrice.
+ *
+ * \param tab tableau contenant la matrice de départ.
+ * \param N dimention de la matrice.
+ * \param res tableau contenant les résultat pour la matrice "tab", après exécution d'une méthode de résolution
+ * \return la racine de la somme des carrés des différences entre les résultats obtenus et ceux voulus.
+ */
 double error(double tab[], double res[], int N){
     int i,j;
     double tmp;
@@ -297,8 +315,8 @@ void matrice_creuse(double tab[], int N, int pourcent){
 }
 
 /**
- * \fn void matrice_sym_pos(double tab[], int N, int pourcent)
- * \brief Créer aléatoirement une matrice symétrique définie positive.
+ * \fn void matrice_sym_pos(double tab[], int N)
+ * \brief Créer une matrice symétrique définie positive (simple test).
  * \param tab tableau ou est contenu la matrice.
  * \param N dimention de la matrice.
  */

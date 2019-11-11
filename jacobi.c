@@ -1,11 +1,30 @@
+/**
+ * \file jacobi.c
+ * \author Aurelien DOUARD, Anthony Bertrand
+ * \brief Programme de la méthode de Jacobi.
+ * \version 0.1
+ * \date 11 novembre 2019
+ *
+ * Programme de la méthode de Jacobi.
+ *
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include "testMatrice.h"
 #include "display.h"
 
-//the iterative part of the jacobi algorithm
-void jacobi_iteration(double *tab, double *res, double *xinit, int N){
+/**
+ * \fn jacobi_iteration(double tab[], double res[], double xinit[], int N)
+ * \brief Fonction éxecutant la partie itérative de la méthode Jacobi.
+ *
+ * \param tab tableau contenant la matrice de départ.
+ * \param res tableau contenant la matrice de résultats.
+ * \param xinit tableau des inconnus qu'on cherche.
+ * \param N dimension de nos matrices.
+ */
+void jacobi_iteration(double tab[], double res[], double xinit[], int N){
     int i, j;
     double xnext[3];
     init_zero(xnext, 1, 3);
@@ -21,8 +40,16 @@ void jacobi_iteration(double *tab, double *res, double *xinit, int N){
     copy(xnext, xinit, 3, 1);
 }
 
-//entry point (called by main())
-void jacobi(double *tab, double *res, int N, float e){
+/**
+ * \fn jacobi(double tab[], double res[], int N, float e)
+ * \brief Fonction servant de point d'entrée de la méthode Jacobi.
+ *
+ * \param tab tableau contenant la matrice de départ.
+ * \param res tableau contenant la matrice de résultats.
+ * \param N dimension de nos matrices.
+ * \param e erreur qu'on cherche a approcher.
+ */
+void jacobi(double tab[], double res[], int N, float e){
     int count = 0;
     double xinit[3]={0,0,0}, err;
     err = error(tab, xinit, N);
