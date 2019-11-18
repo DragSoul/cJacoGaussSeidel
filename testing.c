@@ -26,15 +26,15 @@
  * \param iter nombre d'iteration (nombre de fois que l'erreur sera réduite afin d'avoir des résultats plus précis).
  * \param N dimension de nos matrices
  */
-void testing(double tab[], double res[], int iter, int N){
+void testing_err(double tab[], double res[], int iter, int N){
     int i,j;
     double e = 1.0;
     clock_t start, end;
     printf("time(ms);dim;error\n");
     for(j = 0; j < iter; j++){
         start=clock();
-        //jacobi(tab, res, N, e);
-        gs(tab, res, N, e);
+        jacobi(tab, res, N, e);
+        //gs(tab, res, N, e);
         end=clock();
         double extime=(double) (end-start)*1000.0/CLOCKS_PER_SEC;
         if(extime != 0){
@@ -44,3 +44,37 @@ void testing(double tab[], double res[], int iter, int N){
     }
 }
 
+void testing_Dim(int maxDim){
+    double *tab, *a, *tmpTab; 
+    tab = calloc(maxDim*maxDim, sizeof(double));
+    a = calloc(maxDim, sizeof(double));
+    tmpTab = calloc(maxDim, sizeof(double));
+
+    if(tab == NULL || a == NULL){
+        printf("PB malloc");
+        exit(0);
+    }
+    for(int i = 0; i < maxDim; i++){
+            a[i] = 1;
+    }
+    int i,j, iter;
+    double e = 0.00000000000000000001;
+    clock_t start, end;
+    printf("time(ms);dim;iter\n");
+    for(j = 0; j < maxDim; j+=1){
+        init_zero(tab,j,j);
+        init_zero(tmpTab,1,j);
+        
+        a_bord1(tab, j);
+        start=clock();
+        iter = jacobi_int(tab, a, j, e, tmpTab);
+        
+        //iter = gs_int(tab, a, j, e);
+
+        end=clock();
+        double extime=(double) (end-start)*1000.0/CLOCKS_PER_SEC;
+        if(extime != 0){
+            printf("%f;%d;%d\n",extime, j, iter);
+        }
+    }
+}

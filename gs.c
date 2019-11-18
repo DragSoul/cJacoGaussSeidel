@@ -49,7 +49,8 @@ void gs_iteration(double tab[], double res[], double xinit[], int N){
  */
 void gs(double tab[], double res[], int N, float e){
     int count = 0;
-    double xinit[3]={0,0,0}, err;
+    double *xinit, err;
+    xinit = calloc(N, sizeof(double));
     err = error(tab, xinit, N);
     while(err > e){
         gs_iteration(tab, res, xinit, N);
@@ -57,5 +58,22 @@ void gs(double tab[], double res[], int N, float e){
         count++;
     }
     printf("gauss-seidel : %d itération\n", count);
+    free(xinit);
+    //display_tab_res(xinit, 3);
+}
+
+int gs_int(double tab[], double res[], int N, float e){
+    int count = 0;
+    double *xinit, err;
+    xinit = calloc(N, sizeof(double));
+    err = error(tab, xinit, N);
+    while(err > e){
+        gs_iteration(tab, res, xinit, N);
+        err = error(tab, xinit, N);
+        count++;
+    }
+    //printf("gauss-seidel : %d itération\n", count);
+    free(xinit);
+    return count;
     //display_tab_res(xinit, 3);
 }

@@ -22,7 +22,7 @@
 int main(){
     double tab[100]={3,1,-1,1,2,0,-1,1,4}, res[3]={1,1,1};
     int iter = 10;
-    testing(tab, res, iter, 3);
+    testing_Dim(10000);
     //gs(tab, res, 3);
     return 0;
 }

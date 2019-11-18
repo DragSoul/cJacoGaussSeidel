@@ -26,18 +26,33 @@
  */
 void jacobi_iteration(double tab[], double res[], double xinit[], int N){
     int i, j;
-    double xnext[3];
-    init_zero(xnext, 1, 3);
+    double *xnext;
+    xnext = calloc(N, sizeof(double));
+    init_zero(xnext, 1, N);
     for(i = 0; i < N; i++){
         for (j = 0; j < N; j++){
-            if(i == j){
-                continue;
+            if(i != j){
+                xnext[i] -= (tab[i*N+j]*xinit[j])/tab[i*N+i];
             }
-            xnext[i] -= (tab[i*N+j]*xinit[j])/tab[i*N+i];
         }
         xnext[i] += res[i]/tab[i*N+i];
     }
-    copy(xnext, xinit, 3, 1);
+    copy(xnext, xinit, N, 1);
+    free(xnext);
+}
+
+void jacobi_iteration_tmp(double tab[], double res[], double xinit[], int N, double tpmTab[]){
+    int i, j;
+    init_zero(tpmTab, 1, N);
+    for(i = 0; i < N; i++){
+        for (j = 0; j < N; j++){
+            if(i != j){
+                tpmTab[i] -= (tab[i*N+j]*xinit[j])/tab[i*N+i];
+            }
+        }
+        tpmTab[i] += res[i]/tab[i*N+i];
+    }
+    copy(tpmTab, xinit, N, 1);
 }
 
 /**
@@ -51,13 +66,34 @@ void jacobi_iteration(double tab[], double res[], double xinit[], int N){
  */
 void jacobi(double tab[], double res[], int N, float e){
     int count = 0;
-    double xinit[3]={0,0,0}, err;
+    double *xinit, err;
+    xinit = calloc(N, sizeof(double));
     err = error(tab, xinit, N);
     while(err > e){
         jacobi_iteration(tab, res, xinit, N);
         err = error(tab, xinit, N);
+        //printf("error : %.20f\n",err);
         count++;
     }
-    printf("jacobi : %d itération\n", count);
+    //printf("jacobi : %d itération\n", count);
+    free(xinit);
     //display_tab_res(xinit, 3);
+}
+
+int jacobi_int(double tab[], double res[], int N, float e, double tmpTab[]){
+    int count = 0;
+    double *xinit, err;
+    xinit = calloc(N, sizeof(double));
+    err = error(tab, xinit, N);
+    while(err > e){
+        jacobi_iteration(tab, res, xinit, N);
+        err = error(tab, xinit, N);
+        //printf("error : %.20f\n",err);
+        count++;
+    }
+    printf("errer %f\n", err);
+    //printf("jacobi : %d itération\n", count);
+    free(xinit);
+    //display_tab_res(xinit, 3);
+    return count;
 }

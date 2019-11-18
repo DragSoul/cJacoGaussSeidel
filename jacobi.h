@@ -13,4 +13,6 @@
 #define H_JACOBI
 void jacobi_iteration(double tab[], double res[], double xinit[], int N);
 void jacobi(double tab[], double res[], int N, float e);
+int jacobi_int(double tab[], double res[], int N, float e, double tmpTab[]);
+void jacobi_iteration_tmp(double tab[], double res[], double xinit[], int N, double tpmTab[]);
 #endif
