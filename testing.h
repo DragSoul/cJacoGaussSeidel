@@ -11,5 +11,6 @@
 #ifndef H_TESTING
 #define H_TESTING
 void testing_err(double tab[], double res[], int iter, int N);
-void testing_Dim(int maxDim);
+void testing_Dim_jaco(int maxDim);
+void testing_Dim_gs(int maxDim);
 #endif

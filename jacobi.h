@@ -11,8 +11,8 @@
 
 #ifndef H_JACOBI
 #define H_JACOBI
-void jacobi_iteration(double tab[], double res[], double xinit[], int N);
-void jacobi(double tab[], double res[], int N, float e);
-int jacobi_int(double tab[], double res[], int N, float e, double tmpTab[]);
-void jacobi_iteration_tmp(double tab[], double res[], double xinit[], int N, double tpmTab[]);
+int jacobi(double *tab, double *res, int N, double e, double *tmpTab, double *error_end);
+void jacobi_iteration(double *tab, double *res, double *xinit, int N, double *tpmTab);
+int jacobi_int_plan(double tab[], double res[], double e, double tmpTab[], double *error_end);
+void jacobi_plan_iter(double tab[], double res[], double xinit[], double tpmTab[]);
 #endif

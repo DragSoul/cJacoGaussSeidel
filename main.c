@@ -17,12 +17,14 @@
 #include "testMatrice.h"
 #include "testing.h"
 
-//iter is the nb of iteration -> we want to see the number of iteration in function of the precision 'e' we want.
-//if iter = 5, we will try for e=1; e=0.1; ...; e=0.0001.
 int main(){
-    double tab[100]={3,1,-1,1,2,0,-1,1,4}, res[3]={1,1,1};
-    int iter = 10;
-    testing_Dim(10000);
-    //gs(tab, res, 3);
+    //testing_Dim_gs(101);
+    double tab[4]={-2,1,1,1}, res[2]={1,1}, e, tmpTab[2]={0,0}, error_end=0;
+    a_bord1(tab,2);
+    display_tab(tab,2);
+    printf("jaco\n");
+    jacobi_int_plan(tab,res,0.01,tmpTab,&error_end);
+    printf("gs\n");
+    gs_int_plan(tab,res,0.01,&error_end);
     return 0;
 }

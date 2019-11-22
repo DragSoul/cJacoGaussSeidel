@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "display.h"
 
 /**
  * \fn void display_tab(double *tab, int N)
@@ -23,7 +24,7 @@ void display_tab(double *tab, int N){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
-            printf("%.2f ",tab[i*N+j]);
+            printf("%.4f ",tab[i*N+j]);
         }
         printf("\n");
     }

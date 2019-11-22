@@ -29,5 +29,6 @@ void lotkin(double tab[], int N);
 void moler(double tab[], int N);
 void matrice_creuse(double tab[], int N, int pourcent);
 void matrice_sym_pos(double tab[], int N);
+double error_wres(double tab[], double res[], int N, double *init_res);
 
 #endif

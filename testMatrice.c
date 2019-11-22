@@ -90,6 +90,30 @@ double error(double tab[], double res[], int N){
 }
 
 /**
+ * \fn double error_wres(double tab[], double res[], int N, double *init_res)
+ * \brief Fonction pour calculer l'erreur cummulée sur une matrice.
+ *
+ * \param tab tableau contenant la matrice de départ.
+ * \param N dimention de la matrice.
+ * \param res tableau contenant les résultat pour la matrice "tab", après exécution d'une méthode de résolution
+ * \param init_res tableau contenant les résultat pour la matrice "tab", avant exécution d'une méthode de résolution
+ * \return la racine de la somme des carrés des différences entre les résultats obtenus et ceux voulus.
+ */
+double error_wres(double tab[], double res[], int N, double *init_res){
+    int i,j;
+    double tmp;
+    double err = 0;
+    for(i =0; i<N; i++){
+        tmp = 0;
+        for(j =0; j < N; j++){
+            tmp = tmp + tab[i*N+j] * res[j];
+        }
+        err = err + pow(init_res[i]-tmp, 2);
+    }
+    return sqrt(err);
+}
+
+/**
  * \fn a_bord1(double tab[], int N)
  * \brief Fonction pour générer une matrice a bord.
  *
